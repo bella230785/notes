@@ -76,10 +76,14 @@
 
   /* Highlight picker */
   .picker-wrap { position: relative; }
-  .highlight-picker { display: none; position: absolute; top: 30px; left: 0; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 7px; z-index: 200; box-shadow: 0 4px 20px rgba(0,0,0,0.1); gap: 5px; flex-wrap: wrap; width: 140px; }
+  .highlight-picker { display: none; position: absolute; top: 30px; left: 0; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px; z-index: 200; box-shadow: 0 4px 20px rgba(0,0,0,0.1); gap: 5px; flex-wrap: wrap; width: 152px; }
   .highlight-picker.open { display: flex; }
   .hl-swatch { width: 18px; height: 18px; border-radius: 3px; cursor: pointer; border: 1.5px solid rgba(0,0,0,0.07); transition: transform 0.1s; flex-shrink: 0; }
   .hl-swatch:hover { transform: scale(1.2); }
+  .hl-divider { width: 100%; height: 1px; background: var(--border); margin: 2px 0; }
+  .hl-color-row { display: flex; align-items: center; gap: 6px; width: 100%; }
+  .hl-color-label { font-size: 10px; color: var(--text-muted); font-family: var(--ff); white-space: nowrap; }
+  .hl-color-input { width: 28px; height: 20px; border: 1px solid var(--border); border-radius: 3px; cursor: pointer; padding: 1px; background: none; }
   .hl-remove { font-size: 10px; color: var(--text-muted); cursor: pointer; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); background: none; font-family: var(--ff); width: 100%; margin-top: 2px; }
   .hl-remove:hover { background: var(--hover); }
 
@@ -218,7 +222,12 @@
           <div class="hl-swatch" style="background:#fdba74" onclick="applyHighlight('#fdba74')"></div>
           <div class="hl-swatch" style="background:#f9a8d4" onclick="applyHighlight('#f9a8d4')"></div>
           <div class="hl-swatch" style="background:#d1d5db" onclick="applyHighlight('#d1d5db')"></div>
-          <button class="hl-remove" onclick="removeHighlight()">✕ remover</button>
+          <div class="hl-divider"></div>
+          <div class="hl-color-row">
+            <span class="hl-color-label">personalizada</span>
+            <input class="hl-color-input" type="color" id="hl-custom-color" value="#fde68a" onchange="applyHighlight(this.value)" title="Cor personalizada">
+          </div>
+          <button class="hl-remove" onclick="removeHighlight()">✕ remover destaque</button>
         </div>
       </div>
 
@@ -552,7 +561,7 @@ function removeHighlight() {
   document.getElementById('highlight-picker').classList.remove('open');
   markDirty();
 }
-document.addEventListener('click', e => { if (!e.target.closest('.picker-wrap')) document.getElementById('highlight-picker').classList.remove('open'); });
+document.addEventListener('click', e => { if (!e.target.closest('.picker-wrap') && e.target.id !== 'hl-custom-color') document.getElementById('highlight-picker').classList.remove('open'); });
 
 document.getElementById('editor').addEventListener('paste', function(e) {
   const items = e.clipboardData && e.clipboardData.items;
