@@ -8,20 +8,20 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --sidebar-bg: #f7f7f5;
-    --border: #ebebea;
+    --bg: #faf9f7;
+    --sidebar-bg: #f2f1ee;
+    --border: #e8e6e1;
     --text: #1a1816;
     --text-muted: #9b9896;
     --text-faint: #c4c2bf;
     --accent: #2c2b28;
-    --hover: #f0efed;
-    --active: #e8e7e4;
+    --hover: #eeede9;
+    --active: #e5e3de;
     --sidebar-w: 210px;
     --ff: 'Schibsted Grotesk', sans-serif;
-    --fs: 13px;
-    --lh: 1.55;
-    --ls: 0.1px;
+    --fs: 15px;
+    --lh: 1.4;
+    --ls: -0.01em;
   }
   html, body { height: 100%; font-family: var(--ff); font-size: var(--fs); background: var(--bg); color: var(--text); -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto; text-rendering: optimizeLegibility; }
   .app { display: flex; height: 100vh; overflow: hidden; }
@@ -96,7 +96,7 @@
   .note-title-input::placeholder { color: var(--text-faint); }
   .note-meta { width: 100%; max-width: 720px; font-size: 11px; color: var(--text-faint); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 
-  #editor { width: 100%; max-width: 720px; min-height: 400px; outline: none; font-family: var(--ff); font-size: var(--fs); line-height: var(--lh); letter-spacing: var(--ls); color: var(--text); caret-color: var(--text); word-break: break-word; }
+  #editor { width: 100%; max-width: 720px; min-height: 400px; outline: none; font-family: var(--ff); font-size: var(--fs); line-height: var(--lh); letter-spacing: var(--ls); font-weight: 400; color: var(--text); caret-color: var(--text); word-break: break-word; }
   #editor:empty::before { content: attr(data-placeholder); color: var(--text-faint); pointer-events: none; }
   #editor p { margin: 0 0 1px; }
   #editor h1 { font-size: 16px; font-weight: 600; margin: 14px 0 5px; }
@@ -175,15 +175,15 @@
 
       <!-- Font size -->
       <span class="tb-label" style="margin-left:4px">tam</span>
-      <input class="tb-number" type="number" id="sel-size" value="13" min="9" max="24" onchange="applyTypo()">
+      <input class="tb-number" type="number" id="sel-size" value="15" min="9" max="24" onchange="applyTypo()">
 
       <!-- Line height -->
       <span class="tb-label" style="margin-left:4px">ent</span>
-      <input class="tb-number" type="number" id="sel-lh" value="1.55" min="1" max="3" step="0.05" onchange="applyTypo()">
+      <input class="tb-number" type="number" id="sel-lh" value="1.4" min="1" max="3" step="0.05" onchange="applyTypo()">
 
       <!-- Letter spacing -->
       <span class="tb-label" style="margin-left:4px">esp</span>
-      <input class="tb-number" type="number" id="sel-ls" value="0.1" min="-1" max="5" step="0.05" onchange="applyTypo()">
+      <input class="tb-number" type="number" id="sel-ls" value="-0.01" min="-1" max="5" step="0.05" onchange="applyTypo()">
 
       <div class="toolbar-sep"></div>
 
